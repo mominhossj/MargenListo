@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#0b0d0c" name="theme-color"/>
+<link href="https://margenlisto.pages.dev/" rel="canonical"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+<meta content="MargenListo" property="og:site_name"/>
+<meta content="es_AR" property="og:locale"/>
+<meta content="https://margenlisto.pages.dev/margenlisto-compartir.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="dark" name="color-scheme"/>
+<meta content="MargenListo | Calculadora gratuita de precios y ganancias" property="og:title"/>
+<meta content="Simulá tu precio de venta, margen, comisiones y descuentos en pesos argentinos. Gratis y sin registro." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://margenlisto.pages.dev/" property="og:url"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<meta content="Calculá gratis el precio de venta, margen de ganancia y comisiones de tus productos. Compará canales y simulá descuentos en pesos argentinos. Sin registro." name="description"/>
+<title>Calculadora de precio de venta y ganancias gratis | MargenListo</title>
+<link href="styles.css" rel="stylesheet"/>
+
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<link href="/apple-touch-icon-pwa.png" rel="apple-touch-icon"/>
+
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="app-layout" id="app">
+<aside aria-label="Menú principal" class="sidebar">
+<a aria-label="MargenListo, ir al inicio" class="brand" href="#inicio">
+<span aria-hidden="true" class="brand-icon"><img alt="" height="32" src="/logo-margenlisto.webp" width="32"/></span>
+<span class="brand-word">margen<span>listo</span><small>ESTUDIO DE RENTABILIDAD</small></span>
+</a>
+<div class="side-label">ESPACIO DE TRABAJO</div>
+<nav aria-label="Secciones" class="nav-links">
+<a class="nav-item active" data-target="inicio" href="#inicio"><span aria-hidden="true" class="nav-ico">◫</span> Vista general</a>
+<a class="nav-item" data-target="simulador" href="#simulador"><span aria-hidden="true" class="nav-ico">◈</span> Simulador</a>
+<a class="nav-item" data-target="canales" href="#canales"><span aria-hidden="true" class="nav-ico">⇄</span> Comparar canales</a>
+<a class="nav-item" data-target="registro-ventas" href="/registro-ventas/"><span aria-hidden="true" class="nav-ico">▥</span> Registro de ventas</a>
+<a class="nav-item" data-target="guardados" href="#guardados"><span aria-hidden="true" class="nav-ico">▤</span> Mis escenarios</a>
+
+</nav>
+
+<div class="sidebar-bottom">
+<div class="privacy-box"><span class="live-dot"></span><div><strong>Privacidad primero</strong><p>Los datos se calculan en tu navegador. Los escenarios quedan guardados solo en este dispositivo.</p></div></div>
+<span class="version-label">MARGENLISTO · VERSIÓN 5.6 BETA</span>
+</div>
+</aside>
+<div class="right-side">
+<header class="topbar">
+<div class="topbar-left"><span class="breadcrumb">Herramientas</span><span class="breadcrumb-sep">/</span><strong>Rentabilidad</strong></div>
+<div class="topbar-right"><span class="app-status"><span class="live-dot"></span> Simulador activo</span><a class="top-help" href="#guia">Cómo funciona ↗</a></div>
+</header>
+<main id="contenido">
+<section class="hero-section" id="inicio">
+<div class="hero-topline"><span class="pill pill-green"><span class="live-dot"></span> GRATIS · SIN REGISTRO</span><span class="hero-detail">DISEÑADO PARA PEQUEÑOS NEGOCIOS</span></div>
+<div class="hero-head"><div class="hero-copy"><h1>Tu negocio vende.<br/><em>¿Pero cuánto gana?</em></h1><p>Calculá tu precio ideal, descubrí cuánto te queda realmente y compará dónde te conviene vender. Sin planillas interminables.</p><div class="hero-actions"><a class="btn btn-primary" href="#simulador">Empezar a calcular <span aria-hidden="true">↗</span></a><button class="btn btn-hero-secondary" hidden="" id="ml-install" type="button">Instalar en mi celular ↗</button></div></div><div aria-hidden="true" class="hero-deco"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="deco-center"><span>+</span><strong>28%</strong><small>MARGEN OBJETIVO</small></div></div></div>
+</section>
+<section class="workspace shell-section" id="simulador">
+<div class="section-titleline"><div><span class="eyebrow">01 / SIMULADOR</span><h2>Tu próxima venta, <span>sin sorpresas.</span></h2><p>Modificá los datos y mirá el resultado en tiempo real.</p></div><div class="section-meta"><span class="live-dot"></span> Cálculo en vivo</div></div>
+<div class="workspace-grid">
+<div class="panel inputs-card"><div class="card-heading"><div><h3>Datos del producto</h3><p>Completá los costos de una unidad.</p></div><span class="mini-badge">EDITABLE</span></div>
+<div class="form-fields">
+<label class="field-group"><span>Costo de compra o producción <span class="question" title="Lo que te cuesta obtener una unidad">ⓘ</span></span><div class="input-wrap"><span>$</span><input id="cost" inputmode="decimal" min="0" step="0.01" type="number" value="5800"/></div></label>
+<div class="input-duo"><label class="field-group"><span>Packaging y materiales</span><div class="input-wrap"><span>$</span><input id="packaging" inputmode="decimal" min="0" step="0.01" type="number" value="380"/></div></label><label class="field-group"><span>Envío a tu cargo</span><div class="input-wrap"><span>$</span><input id="shipping" inputmode="decimal" min="0" step="0.01" type="number" value="650"/></div></label></div>
+<div class="input-duo"><label class="field-group"><span>Comisiones variables</span><div class="input-wrap"><input id="fee" inputmode="decimal" max="99" min="0" step="0.1" type="number" value="12"/><span>%</span></div></label><label class="field-group"><span>Otros cargos variables</span><div class="input-wrap"><input id="otherFee" inputmode="decimal" max="99" min="0" step="0.1" type="number" value="2"/><span>%</span></div></label></div>
+<div class="thin-rule"></div>
+<div class="field-title">Tu objetivo</div>
+<label class="field-group range-group"><span>Margen deseado <strong id="margin-display">28%</strong></span><input id="margin" max="75" min="0" step="1" type="range" value="28"/><span class="range-caption"><small>0%</small><small>75%</small></span></label>
+<div class="input-duo"><label class="field-group"><span>Descuento al comprador</span><div class="input-wrap"><input id="discount" inputmode="decimal" max="99" min="0" step="0.1" type="number" value="0"/><span>%</span></div></label><label class="field-group"><span>Cargo fijo por venta</span><div class="input-wrap"><span>$</span><input id="fixedFee" inputmode="decimal" min="0" step="0.01" type="number" value="0"/></div></label></div>
+<details class="advanced"><summary>Distribuir gastos mensuales <span>+</span></summary><p>Opcional: asignamos una parte de tus gastos fijos a cada unidad según el volumen estimado. Si vendés menos, tu ganancia real puede ser menor.</p><div class="input-duo"><label class="field-group"><span>Gastos fijos al mes</span><div class="input-wrap"><span>$</span><input id="monthlyCosts" inputmode="decimal" min="0" step="1" type="number" value="0"/></div></label><label class="field-group"><span>Unidades estimadas/mes</span><div class="input-wrap"><input id="units" min="1" step="1" type="number" value="120"/><span>u.</span></div></label></div></details>
+</div>
+<div class="input-bottom"><button class="text-button" id="reset" type="button">↶ Restablecer ejemplo</button><span>Datos de ejemplo, no tarifas oficiales</span></div>
+</div>
+<div class="results-col">
+<div class="panel result-spotlight"><div class="result-topline"><span>PRECIO DE LISTA RECOMENDADO</span><span class="chip">ARS</span></div><div class="big-price" id="price">$ 13.500</div><div class="price-sub">Para alcanzar tu margen después de costos, comisiones y descuentos.</div><div class="profit-chip" id="profit-pill">↗ Ganancia positiva</div><div class="alert" hidden="" id="error" role="alert"></div>
+<div class="result-divider"></div><div class="main-kpis"><div><span>Ganancia estimada / unidad</span><strong id="profit">$ 3.780</strong></div><div><span>Margen resultante</span><strong id="margin-result">28%</strong></div></div>
+<div class="chart-title"><span>¿Adónde va el dinero?</span><span id="charged">Cobrás $ 13.500</span></div><div class="allocation"><div aria-label="Distribución de precio entre costos, comisiones y ganancia" class="donut" id="donut" role="img"><div class="donut-core"><span>RESULTADO</span><strong id="chart-margin">28%</strong></div></div><div class="legend"><div><span><i class="swatch swatch-profit"></i> Ganancia</span><strong id="split-profit">$ 3.780</strong></div><div><span><i class="swatch swatch-fees"></i> Cargos</span><strong id="split-fees">$ 1.890</strong></div><div><span><i class="swatch swatch-costs"></i> Costos</span><strong id="split-costs">$ 7.830</strong></div></div></div>
+</div>
+<div class="secondaries"><div class="small-metric"><span>Precio mínimo sin pérdida</span><strong id="breakeven">—</strong><small>Con los mismos cargos y descuento.</small></div><div class="small-metric"><span>Costo completo por unidad</span><strong id="total-cost">—</strong><small>Incluye prorrateo mensual, si aplica.</small></div></div>
+<label class="scenario-name-label" for="scenario-name">Nombre para guardar el escenario</label><input autocomplete="off" class="scenario-name" id="scenario-name" maxlength="60" placeholder="Ej. Remera de algodón" type="text" value="Mi producto"/><div class="actions"><button class="btn btn-primary" id="save" type="button">＋ Guardar escenario</button><button class="btn btn-outline" id="download" type="button">↓ Exportar CSV</button></div>
+<p class="estimation-note">Precios sugeridos redondeados al peso entero. Simulación orientativa: no calcula IVA ni retenciones automáticamente ni garantiza ventas. Verificá tus cargos reales y tu régimen fiscal.</p>
+</div>
+</div>
+</section>
+<section class="compare-section shell-section" id="canales"><div class="section-titleline"><div><span class="eyebrow">02 / COMPARADOR</span><h2>No todos los canales <span>dejan la misma ganancia.</span></h2><p>Un mismo precio de lista. Tres formas diferentes de vender.</p></div></div>
+<div class="compare-panel panel"><div class="compare-info"><div><span class="muted-overline">COMPARACIÓN EN VIVO</span><h3>¿Dónde te queda más?</h3></div><span class="compare-note">Porcentajes ilustrativos y editables · Otros cargos variables generales se aplican a los tres canales</span></div><div class="channel-list" id="channel-list">
+<article class="channel-row" data-channel="0"><div class="channel-ident"><span class="channel-icon">⌂</span><div><strong>Venta directa</strong><small>Sin intermediarios</small></div></div><div class="channel-fields"><label>Comisión %<input data-channel="0" data-key="fee" max="99" min="0" step="0.1" type="number" value="0"/></label><label>Descuento %<input data-channel="0" data-key="discount" max="99" min="0" step="0.1" type="number" value="0"/></label><label>Envío $<input data-channel="0" data-key="shipping" min="0" step="1" type="number" value="0"/></label><label>Cargo fijo $<input data-channel="0" data-key="fixed" min="0" step="1" type="number" value="0"/></label></div><div class="channel-output"><strong id="chan-money-0">—</strong><span id="chan-margin-0">—</span></div><div class="channel-meter"><span id="meter-0"></span></div></article>
+<article class="channel-row" data-channel="1"><div class="channel-ident"><span class="channel-icon">⌁</span><div><strong>Link de pago</strong><small>Comisión por cobro</small></div></div><div class="channel-fields"><label>Comisión %<input data-channel="1" data-key="fee" max="99" min="0" step="0.1" type="number" value="6"/></label><label>Descuento %<input data-channel="1" data-key="discount" max="99" min="0" step="0.1" type="number" value="0"/></label><label>Envío $<input data-channel="1" data-key="shipping" min="0" step="1" type="number" value="0"/></label><label>Cargo fijo $<input data-channel="1" data-key="fixed" min="0" step="1" type="number" value="0"/></label></div><div class="channel-output"><strong id="chan-money-1">—</strong><span id="chan-margin-1">—</span></div><div class="channel-meter"><span id="meter-1"></span></div></article>
+<article class="channel-row" data-channel="2"><div class="channel-ident"><span class="channel-icon">▣</span><div><strong>Marketplace</strong><small>Más alcance, más cargos</small></div></div><div class="channel-fields"><label>Comisión %<input data-channel="2" data-key="fee" max="99" min="0" step="0.1" type="number" value="14"/></label><label>Descuento %<input data-channel="2" data-key="discount" max="99" min="0" step="0.1" type="number" value="0"/></label><label>Envío $<input data-channel="2" data-key="shipping" min="0" step="1" type="number" value="500"/></label><label>Cargo fijo $<input data-channel="2" data-key="fixed" min="0" step="1" type="number" value="0"/></label></div><div class="channel-output"><strong id="chan-money-2">—</strong><span id="chan-margin-2">—</span></div><div class="channel-meter"><span id="meter-2"></span></div></article>
+</div><div class="winner" id="winner"></div><p class="compare-footnote">Este módulo compara ganancias al precio de lista recomendado. Reemplaza la comisión del simulador principal por la comisión de cada canal; no suma ambas. El envío y cargo fijo por canal se agregan al costo base, además del envío y cargo fijo cargados arriba. Evitá duplicarlos. El descuento del simulador principal no se traslada automáticamente a los canales: usá el descuento de cada canal. Las tarifas de ejemplo no son tarifas vigentes oficiales.</p></div>
+</section>
+<section class="saved-section shell-section" id="guardados"><div class="section-titleline"><div><span class="eyebrow">03 / TUS ESCENARIOS</span><h2>Guardá tus mejores <span>decisiones.</span></h2><p>Compará ideas sin perder los datos que ya calculaste.</p></div><span class="mini-badge">GUARDADO LOCAL</span></div><div class="panel saved-panel"><div class="empty-state" id="saved-empty"><span class="empty-icon">▤</span><h3>Todavía no guardaste escenarios</h3><p>Completá el simulador y usá “Guardar escenario”. Se guardan solo en este navegador.</p></div><div class="saved-list" hidden="" id="saved-items"></div><div class="saved-footer"><button class="text-button" hidden="" id="clear-saved" type="button">Eliminar todos los escenarios</button><span>Se pierden si borrás los datos de este navegador. Para conservarlos, exportá los CSV.</span></div></div></section>
+
+<section class="guide-section shell-section" id="guia"><div class="section-titleline"><div><span class="eyebrow">05 / ENTENDÉ TU NEGOCIO</span><h2>Números claros. <span>Decisiones mejores.</span></h2></div></div><div class="guide-grid"><article class="guide-card"><span>01</span><h3>Margen ≠ recargo</h3><p>Si algo cuesta $7.000 y se vende a $10.000, el margen antes de cargos es 30% sobre la venta; el recargo sobre el costo es 42,9%.</p></article><article class="guide-card"><span>02</span><h3>Los costos invisibles importan</h3><p>Packaging, envíos absorbidos, cargos fijos y comisiones pueden dejarte muy poca ganancia. Cargalos todos, sin duplicarlos.</p></article><article class="guide-card"><span>03</span><h3>El precio no garantiza ventas</h3><p>El precio sugerido cubre tu objetivo según los supuestos. También tenés que considerar demanda, competencia y disposición a pagar.</p></article></div><details class="formula"><summary>Ver la fórmula utilizada <span>↗</span></summary><p>Precio de lista = (costos unitarios + cargos fijos por operación + gastos fijos mensuales / unidades estimadas) ÷ [(1 − descuento) × (1 − comisiones variables − otros cargos variables − margen buscado)].</p><p>Los porcentajes de cargos y margen se aplican al importe efectivamente cobrado, después del descuento.</p></details><div aria-label="Recursos para emprendedores" class="more-guides"><a href="/calculadora-precio-de-venta/">Guía: cómo calcular el precio de venta <span aria-hidden="true">↗</span></a><a href="/margen-vs-recargo/">Guía: margen vs. recargo <span aria-hidden="true">↗</span></a><a href="/calculadora-descuentos-rentables/">Calculadora de descuentos rentables <span aria-hidden="true">↗</span></a><a href="/precio-venta-instagram/">Precios para vender por Instagram <span aria-hidden="true">↗</span></a></div></section>
+<footer><span>© <span id="year">2026</span> MargenListo · Simulador orientativo</span><span>Diseño propio inspirado en interfaces oscuras modernas · No afiliado a Spotify</span></footer>
+</main>
+</div>
+</div>
+<div aria-live="polite" class="toast" hidden="" id="toast" role="status"></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "MargenListo", "url": "https://margenlisto.pages.dev/", "inLanguage": "es-AR", "description": "Herramientas gratuitas para calcular precios y márgenes de venta en Argentina."}</script>
+<script src="calc.js"></script><script src="app.js"></script>
+</body>
+</html>

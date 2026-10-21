@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="es-AR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Calculadora de descuentos rentables | MargenListo</title><meta content="Calculá cuánto podés descontar sin perder ganancia. Simulá costos, comisiones y margen, con números editables en pesos argentinos." name="description"/><meta content="#0b0f0c" name="theme-color"/>
+<link href="https://margenlisto.pages.dev/calculadora-descuentos-rentables/" rel="canonical"/><meta content="index, follow, max-image-preview:large" name="robots"/>
+<meta content="article" property="og:type"/><meta content="MargenListo" property="og:site_name"/><meta content="es_AR" property="og:locale"/><meta content="Calculadora de descuentos rentables | MargenListo" property="og:title"/><meta content="Calculá cuánto podés descontar sin perder ganancia. Simulá costos, comisiones y margen, con números editables en pesos argentinos." property="og:description"/><meta content="https://margenlisto.pages.dev/calculadora-descuentos-rentables/" property="og:url"/><meta content="https://margenlisto.pages.dev/margenlisto-compartir.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/><link href="/favicon.png" rel="icon" type="image/png"/><link href="/guias.css" rel="stylesheet"/><link href="/herramientas.css" rel="stylesheet"/><script defer="" src="/herramientas.js"></script>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<link href="/apple-touch-icon-pwa.png" rel="apple-touch-icon"/>
+
+</head>
+<body><header><div class="wrap"><a class="brand" href="/"><img alt="" height="44" src="/logo-margenlisto.webp" width="44"/>Margen<span>Listo</span></a><nav aria-label="Navegación" class="toplinks"><a href="/#simulador">Calculadora general</a><a href="/#pro">Kit Pro</a></nav></div></header>
+<main class="wrap"><div class="crumb"><a href="/">Inicio</a> / Herramientas / Descuentos rentables</div><p class="eyebrow">HERRAMIENTAS GRATUITAS · ARGENTINA</p><h1>Calculadora de descuentos: ¿cuánto podés bajar sin perder plata?</h1><p class="lead">Descubrí el precio final, la ganancia real y el descuento máximo que podés ofrecer sin perder dinero ni resignar el margen que buscás.</p>
+<div class="toolbox" data-calculator="descuentos">
+<h2>Calculá cuánto te queda con una promoción</h2><p>Cambiá los valores del ejemplo: todo se recalcula automáticamente en tu navegador.</p>
+<div class="tool-grid">
+<label class="tool-field" for="list-price">Precio de lista ($)<input id="list-price" inputmode="decimal" min="0.01" step="any" type="number" value="16000"/><span>Precio original antes del descuento.</span></label>
+<label class="tool-field" for="unit-cost">Costo total por unidad ($)<input id="unit-cost" inputmode="decimal" min="0" step="any" type="number" value="9000"/><span>Incluí materiales y embalaje, sin duplicar cargos.</span></label>
+<label class="tool-field" for="sale-fee">Comisiones sobre el importe cobrado (%)<input id="sale-fee" inputmode="decimal" max="99" min="0" step="any" type="number" value="12"/><span>Estimación editable, no una tasa oficial.</span></label>
+<label class="tool-field" for="sale-fixed">Cargos fijos por operación ($)<input id="sale-fixed" inputmode="decimal" min="0" step="any" type="number" value="300"/><span>Por ejemplo, un cargo fijo adicional.</span></label>
+<label class="tool-field" for="discount">Descuento propuesto (%)<input id="discount" inputmode="decimal" max="99" min="0" step="any" type="number" value="15"/><span>Promoción aplicada al precio de lista.</span></label>
+<label class="tool-field" for="target">Margen mínimo buscado (%)<input id="target" inputmode="decimal" max="99" min="0" step="any" type="number" value="15"/><span>Ganancia sobre el importe efectivamente cobrado.</span></label>
+</div><p class="tool-error" hidden="" id="tool-error" role="alert"></p>
+<div aria-live="polite" class="tool-result"><div class="tool-value"><small>Precio final con descuento</small><strong data-result="" id="res-charged">—</strong></div><div class="tool-value"><small>Ganancia estimada por venta</small><strong data-result="" id="res-profit">—</strong></div><div class="tool-value"><small>Margen real después del descuento</small><strong data-result="" id="res-margin">—</strong></div><div class="tool-value"><small>Descuento máximo sin pérdida</small><strong data-result="" id="res-zero">—</strong></div><div class="tool-value"><small>Descuento máximo para mantener tu margen</small><strong data-result="" id="res-target">—</strong></div><p class="tool-explain" id="res-advice">—</p></div></div>
+<h2>Cómo calcular una promoción sin perder plata</h2>
+<p>Cuando ofrecés un descuento, no basta con restarlo al precio: seguís pagando la compra o fabricación del producto, los cargos fijos y posiblemente comisiones sobre lo cobrado. La calculadora distingue <strong>ganancia positiva</strong> de <strong>mantener el margen deseado</strong>: no son lo mismo.</p>
+<div class="callout"><strong>Ganancia por unidad</strong> = (precio de lista × (1 − descuento)) × (1 − comisión) − costo total por unidad − cargo fijo.</div>
+<p>Si una prenda se publica a $16.000 y se descuenta un 15%, el comprador paga $13.600. Con costo de $9.000, cargo fijo de $300 y comisión ilustrativa del 12% sobre lo cobrado, la ganancia estimada es <strong>$2.668</strong> por unidad, antes de los gastos mensuales e impuestos no cargados. Eso representa un margen aproximado de 19,62% sobre los $13.600.</p>
+<h2>¿Cuánto puedo descontar como máximo?</h2>
+<p>Hay dos límites distintos. El <strong>descuento máximo sin pérdida</strong> es aquel que deja la ganancia por unidad en cero según tus costos. El <strong>descuento máximo conservando el margen</strong> es más exigente: mantiene un excedente porcentual incluso después del descuento. Una promoción puede ser rentable y, aun así, quedar por debajo de tu objetivo.</p>
+<div class="callout"><strong>Descuento máximo para conservar margen</strong> = 1 − (costo unitario + cargo fijo) ÷ [precio de lista × (1 − comisión − margen buscado)].</div>
+<p>El cálculo solo funciona cuando comisión + margen objetivo es menor que 100%. Si el precio de lista ya es insuficiente para sostener el margen, la herramienta lo advierte en vez de mostrar un descuento viable.</p>
+<h2>Cuatro errores frecuentes al ofrecer descuentos</h2>
+<ul><li>Calcular el porcentaje sobre el costo en lugar de aplicarlo sobre el precio de lista.</li><li>Olvidar la comisión y el envío absorbido por el vendedor.</li><li>Comparar ganancia en pesos con margen porcentual como si fueran iguales.</li><li>Considerar la ganancia variable por producto como ganancia final del mes, sin contemplar gastos fijos.</li></ul>
+<div class="tips"><strong>Consejo:</strong> probá un 10%, un 15% y un 20% con tus datos. Si el margen no alcanza, puede convenir reducir costos, combinar productos o ajustar la promoción en lugar de subir artificialmente el precio de lista.</div>
+<h2>Preguntas habituales</h2><h3>¿El porcentaje máximo incluye impuestos?</h3><p>Solo los costos que vos cargás. No se calculan IVA, retenciones ni regímenes fiscales de forma automática.</p>
+<h3>¿Se guardan mis números?</h3><p>No. Esta calculadora funciona en tu navegador y no envía los valores a un servidor. Para guardar escenarios de la calculadora general, utilizá <a href="/#simulador">MargenListo</a>.</p>
+
+<div class="more"><a href="/">Calculadora general ↗</a><a href="/calculadora-precio-de-venta/">Guía para fijar precios ↗</a><a href="/margen-vs-recargo/">Margen y recargo ↗</a><a href="/precio-venta-instagram/">Precios para vender por Instagram ↗</a></div>
+</main><footer><div class="wrap">© MargenListo · Calculadoras orientativas. Los porcentajes son ejemplos editables, no tarifas oficiales ni asesoramiento impositivo.</div></footer></body></html>
