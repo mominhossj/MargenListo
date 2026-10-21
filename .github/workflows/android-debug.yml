@@ -1,0 +1,64 @@
+name: MargenListo V5.7 - Crear y verificar APK debug
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Obtener fuentes
+        uses: actions/checkout@v4
+      - name: JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Instalar Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
+      - name: Instalar API 36 y herramientas de compilacion
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - name: Gradle 8.13
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.13'
+          cache-provider: basic
+      - name: Verificar fuentes y ejecutar pruebas
+        run: bash scripts/check-source.sh
+      - name: Compilar APK de depuracion
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
+      - name: Verificar que el APK sea instalable y este firmado
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK='app/build/outputs/apk/debug/app-debug.apk'
+          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:?Falta Android SDK}}"
+          TOOLS="$SDK_ROOT/build-tools/35.0.0"
+          python3 scripts/verify-apk.py "$APK"
+          "$TOOLS/apksigner" verify --verbose --print-certs "$APK"
+          "$TOOLS/aapt" dump badging "$APK" | tee app/build/outputs/apk/debug/metadata.txt
+          "$TOOLS/aapt" dump badging "$APK" | grep -F "package: name='app.margenlisto.mobile'"
+          "$TOOLS/aapt" dump badging "$APK" | grep -F "targetSdkVersion:'36'"
+          "$TOOLS/aapt" dump badging "$APK" | grep -F "sdkVersion:'26'"
+          "$TOOLS/aapt" dump permissions "$APK" | tee app/build/outputs/apk/debug/permisos.txt
+          if grep -q 'uses-permission:' app/build/outputs/apk/debug/permisos.txt; then
+            echo 'ERROR: aparecieron permisos Android no autorizados'; exit 1
+          fi
+          (cd app/build/outputs/apk/debug && sha256sum app-debug.apk > app-debug.apk.sha256)
+      - name: Publicar APK de depuracion para pruebas
+        uses: actions/upload-artifact@v4
+        with:
+          name: MargenListo-V5.7-APK-DEBUG-NoPublicar
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/app-debug.apk.sha256
+            app/build/outputs/apk/debug/metadata.txt
+            app/build/outputs/apk/debug/permisos.txt
+          if-no-files-found: error
+          retention-days: 7
