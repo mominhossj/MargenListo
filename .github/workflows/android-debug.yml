@@ -1,4 +1,4 @@
-name: MargenListo V5.7 - APK debug (permisos corregidos)
+name: MargenListo V6.0 - APK Beta independiente
 
 on:
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
         run: bash scripts/check-source.sh
       - name: Compilar APK de depuracion
         run: gradle :app:assembleDebug --no-daemon --stacktrace
-      - name: Verificar APK y permiso interno AndroidX (regla corregida)
+      - name: Verificar que el APK sea instalable y este firmado
         shell: bash
         run: |
           set -euo pipefail
@@ -43,41 +43,16 @@ jobs:
           python3 scripts/verify-apk.py "$APK"
           "$TOOLS/apksigner" verify --verbose --print-certs "$APK"
           "$TOOLS/aapt" dump badging "$APK" | tee app/build/outputs/apk/debug/metadata.txt
-          "$TOOLS/aapt" dump badging "$APK" | grep -F "package: name='app.margenlisto.mobile'"
+          "$TOOLS/aapt" dump badging "$APK" | grep -F "package: name='app.margenlisto.mobile.preview'"
           "$TOOLS/aapt" dump badging "$APK" | grep -F "targetSdkVersion:'36'"
           "$TOOLS/aapt" dump badging "$APK" | grep -F "sdkVersion:'26'"
           "$TOOLS/aapt" dump permissions "$APK" | tee app/build/outputs/apk/debug/permisos.txt
-          # AndroidX Core declara un permiso interno de nivel signature para RECEIVER_NOT_EXPORTED.
-          # La lista es cerrada: no se autorizan INTERNET, ubicacion, almacenamiento, etc.
-          python3 - <<'PYTHON_PERMISSIONS'
-          import re
-          from pathlib import Path
-
-          allowed = 'app.margenlisto.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
-          report = Path('app/build/outputs/apk/debug/permisos.txt').read_text(encoding='utf-8')
-          requested = []
-          declared = []
-          for raw in report.splitlines():
-              line = raw.strip()
-              if re.match(r'^uses-permission(?:-sdk-[0-9]+)?:', line):
-                  match = re.fullmatch(r"uses-permission(?:-sdk-[0-9]+)?:\s*name='([^']+)'", line)
-                  if not match:
-                      raise SystemExit('PERMISOS NO VERIFICADOS (formato desconocido): ' + line)
-                  requested.append(match.group(1))
-              elif line.startswith('permission:'):
-                  declared.append(line.removeprefix('permission:').strip())
-          if requested != [allowed] or declared != [allowed]:
-              raise SystemExit(
-                  'PERMISOS NO AUTORIZADOS. Solicitados=' + repr(requested)
-                  + ', declarados=' + repr(declared)
-              )
-          print('PERMISOS OK - REGLA CORREGIDA V2: solo permiso interno AndroidX, sin permisos del sistema.')
-          PYTHON_PERMISSIONS
+          python3 scripts/verify-permissions.py app/build/outputs/apk/debug/permisos.txt
           (cd app/build/outputs/apk/debug && sha256sum app-debug.apk > app-debug.apk.sha256)
       - name: Publicar APK de depuracion para pruebas
         uses: actions/upload-artifact@v4
         with:
-          name: MargenListo-V5.7-APK-DEBUG-NoPublicar
+          name: MargenListo-V6.0-APK-DEBUG-Preview
           path: |
             app/build/outputs/apk/debug/app-debug.apk
             app/build/outputs/apk/debug/app-debug.apk.sha256
