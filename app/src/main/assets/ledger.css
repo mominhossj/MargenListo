@@ -2,3 +2,16 @@
 
 /* V5.7: filtros y evolución histórica, sin dependencias remotas. */
 .report-filters{margin-bottom:12px}.filter-head h2{margin:0 0 5px;font-size:21px}.filter-head p{margin:0;color:var(--muted);font-size:14px}.filter-fields{display:flex;flex-wrap:wrap;gap:12px;margin-top:15px}.filter-fields .field{min-width:min(250px,100%);flex:1;max-width:355px}.filter-info{font-size:13px;color:#b6d5be;margin:12px 0 0}.monthly{margin-top:22px}.monthly table{min-width:640px;margin-top:15px}.monthly td:nth-child(2){white-space:nowrap;min-width:auto;max-width:none}.monthly .filter-head{margin-bottom:5px}@media(max-width:480px){.filter-fields{display:grid;grid-template-columns:1fr}.filter-fields .field{max-width:none}}
+
+/* V6.0: productive, read-only insights and one-click repeat form. */
+.insights{margin-top:14px}
+.insight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:16px}
+.insight-grid>div{min-width:0;border:1px solid var(--border);border-radius:12px;padding:12px;background:#101711}
+.insight-grid h3{margin:0 0 10px;font-size:16px}
+.insight-empty{color:var(--muted);margin:10px 0}
+.insight-table{min-width:380px;font-size:13px}
+.insight-table th,.insight-table td{padding:9px 7px;white-space:normal}
+.insight-table td:nth-child(2){white-space:nowrap;min-width:auto;max-width:none}
+.insight-table td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
+.tiny-button.repeat{border-color:#4a9360;color:#a5f7bf;margin-right:6px}
+@media(max-width:720px){.insight-grid{grid-template-columns:minmax(0,1fr);gap:14px}}

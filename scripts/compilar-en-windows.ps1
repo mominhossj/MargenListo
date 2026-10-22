@@ -1,4 +1,4 @@
-# MargenListo V5.7 - Compilacion DEBUG local en Windows.
+# MargenListo V6.0 - Compilacion DEBUG independiente en Windows.
 # No desactiva Defender ni realiza publicaciones.
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest

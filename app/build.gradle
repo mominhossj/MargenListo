@@ -1,36 +1,12 @@
-
 plugins { id 'com.android.application' }
-
 android {
-    namespace 'app.margenlisto.mobile'
-    compileSdk 36
-
-    defaultConfig {
-        applicationId 'app.margenlisto.mobile'
-        minSdk 26
-        targetSdk 36
-        versionCode 8
-        versionName '0.6.0-beta'
-    }
-
-    buildTypes {
-        debug {
-            applicationIdSuffix '.preview'
-            versionNameSuffix '-preview'
-            resValue 'string', 'application_label', 'MargenListo Beta'
-        }
-        release {
-            resValue 'string', 'application_label', 'MargenListo'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
+ namespace 'app.margenlisto.mobile'
+ compileSdk 36
+ defaultConfig { applicationId 'app.margenlisto.mobile'; minSdk 26; targetSdk 36; versionCode 8; versionName '0.6.0-beta' }
+ buildTypes {
+   debug { applicationIdSuffix '.preview'; versionNameSuffix '-preview'; resValue 'string', 'application_label', 'MargenListo Beta' }
+   release { resValue 'string', 'application_label', 'MargenListo' }
+ }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
-
-dependencies {
-    implementation 'androidx.webkit:webkit:1.16.0'
-    implementation 'androidx.core:core:1.16.0'
-}
+dependencies { implementation 'androidx.webkit:webkit:1.16.0'; implementation 'androidx.core:core:1.16.0' }

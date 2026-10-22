@@ -108,6 +108,34 @@
     return [...groups].sort((a,b)=>b[0].localeCompare(a[0]))
       .map(([period,records])=>({period,...summarize(records)}));
   }
+  // V6: performance grouped from records only. Never modifies saved entries.
+  // Results are variable-profit estimates: monthly overhead/taxes not included.
+  function performanceByProduct(entries, limit=5) {
+    if (!Array.isArray(entries)) throw Error('Historial inválido');
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw Error('Límite inválido');
+    const groups=new Map();
+    for (const row of entries) {
+      const v=validate(row);
+      const key=v.product.normalize('NFKC').toLocaleLowerCase('es-AR');
+      if (!groups.has(key)) groups.set(key, {name:v.product, rows:[]});
+      groups.get(key).rows.push(v);
+    }
+    return [...groups.values()]
+      .map(g=>({name:g.name,...summarize(g.rows)}))
+      .sort((a,b)=>b.profit-a.profit||b.revenue-a.revenue||a.name.localeCompare(b.name,'es-AR'))
+      .slice(0,limit);
+  }
+  function performanceByChannel(entries) {
+    if (!Array.isArray(entries)) throw Error('Historial inválido');
+    const groups=new Map();
+    for (const row of entries) {
+      const v=validate(row);
+      if (!groups.has(v.channel)) groups.set(v.channel,[]);
+      groups.get(v.channel).push(v);
+    }
+    return [...groups].map(([name,rows])=>({name,...summarize(rows)}))
+      .sort((a,b)=>b.profit-a.profit||b.revenue-a.revenue||a.name.localeCompare(b.name,'es-AR'));
+  }
   function safeCell(value) {
     if (typeof value === 'number' && Number.isFinite(value)) return String(value);
     let v=String(value ?? '').replace(/[\r\n\t]+/g,' ');
@@ -142,5 +170,5 @@
     });
     return JSON.stringify({kind:'MargenListoLedger',version:1,exportedAt:new Date().toISOString(),entries:normalized},null,2);
   }
-  return {MAX_ROWS, validate,calc,summarize,filterEntries,availableMonths,monthlyReport,safeCell,toCSV,parseBackup,toBackup};
+  return {MAX_ROWS, validate,calc,summarize,filterEntries,availableMonths,monthlyReport,performanceByProduct,performanceByChannel,safeCell,toCSV,parseBackup,toBackup};
 });

@@ -31,6 +31,37 @@
      cell(tr,(month.margin*100).toFixed(1)+'%');cell(tr,month.losses);body.append(tr);
    }
  }
+ function showInsights(){
+   const products=core.performanceByProduct(filtered,5);
+   const channels=core.performanceByChannel(filtered);
+   const prows=$('product-insight-rows'),crows=$('channel-insight-rows');
+   prows.replaceChildren();crows.replaceChildren();
+   $('product-insight-empty').hidden=products.length>0;
+   $('product-insight-wrap').hidden=products.length===0;
+   $('channel-insight-empty').hidden=channels.length>0;
+   $('channel-insight-wrap').hidden=channels.length===0;
+   for(const p of products){
+     const tr=document.createElement('tr');
+     cell(tr,p.name);cell(tr,String(p.count));cell(tr,ars(p.profit),p.profit<0?'neg':'pos');
+     prows.append(tr);
+   }
+   for(const c of channels){
+     const tr=document.createElement('tr');
+     cell(tr,c.name);cell(tr,String(c.count));cell(tr,ars(c.profit),c.profit<0?'neg':'pos');
+     crows.append(tr);
+   }
+ }
+ function repeatSale(row){
+   // Pre-fill only. Never insert a new sale until user reviews and submits.
+   for(const key of ['product','channel','units','price','cost','packaging','shipping','commission','discount','fixed'])
+     $(key).value=String(row[key]);
+   // New operation defaults to today's local date, not the old sale date.
+   const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
+   $('date').value=today.toISOString().slice(0,10);
+   document.getElementById('sale-form').scrollIntoView?.({behavior:'smooth',block:'start'});
+   $('product').focus();
+   notice('Formulario completado con los valores de esta venta. Revisalos y presioná Guardar si corresponde.');
+ }
  let toastTimer;
  function notice(s, bad=false){const el=$('notice');el.textContent=s;el.classList.toggle('bad',bad);el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.hidden=true,5500);}
  function load(){
@@ -69,8 +100,12 @@
      const controls=document.createElement('td');const btn=document.createElement('button');btn.className='tiny-button';btn.textContent='Eliminar';btn.type='button';btn.setAttribute('aria-label','Eliminar venta de '+x.product);
      btn.addEventListener('click',()=>{if(!window.confirm('¿Eliminar este registro? Esta acción no se puede deshacer.'))return;
        const previous=[...entries];entries=entries.filter(e=>e.id!==record.id);if(!persist()){entries=previous;return;}rerender();notice('Registro eliminado');});
-     controls.append(btn);tr.append(controls);tbody.append(tr);
+     const repeat=document.createElement('button');repeat.type='button';repeat.className='tiny-button repeat';repeat.textContent='Repetir';
+     repeat.setAttribute('aria-label','Preparar otra venta de '+x.product);
+     repeat.addEventListener('click',()=>repeatSale(record));
+     controls.append(repeat,btn);tr.append(controls);tbody.append(tr);
    }
+   showInsights();
    $('empty').hidden=filtered.length>0;$('table-wrap').hidden=filtered.length===0;
    $('export-csv').disabled=entries.length===0;$('export-json').disabled=entries.length===0;$('export-filtered').disabled=filtered.length===0;
    monthlyTable();
