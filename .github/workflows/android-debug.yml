@@ -47,9 +47,32 @@ jobs:
           "$TOOLS/aapt" dump badging "$APK" | grep -F "targetSdkVersion:'36'"
           "$TOOLS/aapt" dump badging "$APK" | grep -F "sdkVersion:'26'"
           "$TOOLS/aapt" dump permissions "$APK" | tee app/build/outputs/apk/debug/permisos.txt
-          if grep -q 'uses-permission:' app/build/outputs/apk/debug/permisos.txt; then
-            echo 'ERROR: aparecieron permisos Android no autorizados'; exit 1
-          fi
+          # AndroidX Core declara un permiso interno de nivel signature para RECEIVER_NOT_EXPORTED.
+          # La lista es cerrada: no se autorizan INTERNET, ubicacion, almacenamiento, etc.
+          python3 - <<'PYTHON_PERMISSIONS'
+          import re
+          from pathlib import Path
+
+          allowed = 'app.margenlisto.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
+          report = Path('app/build/outputs/apk/debug/permisos.txt').read_text(encoding='utf-8')
+          requested = []
+          declared = []
+          for raw in report.splitlines():
+              line = raw.strip()
+              if re.match(r'^uses-permission(?:-sdk-[0-9]+)?:', line):
+                  match = re.fullmatch(r"uses-permission(?:-sdk-[0-9]+)?:\s*name='([^']+)'", line)
+                  if not match:
+                      raise SystemExit('PERMISOS NO VERIFICADOS (formato desconocido): ' + line)
+                  requested.append(match.group(1))
+              elif line.startswith('permission:'):
+                  declared.append(line.removeprefix('permission:').strip())
+          if requested != [allowed] or declared != [allowed]:
+              raise SystemExit(
+                  'PERMISOS NO AUTORIZADOS. Solicitados=' + repr(requested)
+                  + ', declarados=' + repr(declared)
+              )
+          print('PERMISOS OK: solo permiso interno AndroidX, sin permisos del sistema.')
+          PYTHON_PERMISSIONS
           (cd app/build/outputs/apk/debug && sha256sum app-debug.apk > app-debug.apk.sha256)
       - name: Publicar APK de depuracion para pruebas
         uses: actions/upload-artifact@v4
