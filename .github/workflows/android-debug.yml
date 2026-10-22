@@ -1,4 +1,4 @@
-name: MargenListo V5.7 - Crear y verificar APK debug
+name: MargenListo V5.7 - APK debug (permisos corregidos)
 
 on:
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
         run: bash scripts/check-source.sh
       - name: Compilar APK de depuracion
         run: gradle :app:assembleDebug --no-daemon --stacktrace
-      - name: Verificar que el APK sea instalable y este firmado
+      - name: Verificar APK y permiso interno AndroidX (regla corregida)
         shell: bash
         run: |
           set -euo pipefail
@@ -71,7 +71,7 @@ jobs:
                   'PERMISOS NO AUTORIZADOS. Solicitados=' + repr(requested)
                   + ', declarados=' + repr(declared)
               )
-          print('PERMISOS OK: solo permiso interno AndroidX, sin permisos del sistema.')
+          print('PERMISOS OK - REGLA CORREGIDA V2: solo permiso interno AndroidX, sin permisos del sistema.')
           PYTHON_PERMISSIONS
           (cd app/build/outputs/apk/debug && sha256sum app-debug.apk > app-debug.apk.sha256)
       - name: Publicar APK de depuracion para pruebas
